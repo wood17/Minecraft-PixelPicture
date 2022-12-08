@@ -1,4 +1,5 @@
 # Minecraft-PixelPicture 我的世界像素画生成器
+本开源软件使用GPLv3协议。
 
 使用python开发。
 在使用之前，请先安装pillow轮子。
