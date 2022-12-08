@@ -1,4 +1,6 @@
 #本程序由wood秋木制作
+#https://github.com/wood17/Minecraft-PixelPicture
+#本开源软件使用GPLv3协议
 from PIL import Image
 print("本程序由wood秋木制作，欢迎使用图片转指令！")
 #获取输入
