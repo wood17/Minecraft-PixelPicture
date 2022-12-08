@@ -2,10 +2,10 @@
 from PIL import Image
 print("本程序由wood秋木制作，欢迎使用图片转指令！")
 #获取输入
-图像文件 = input("图像文件")
-宽 = int(input("宽"))
-长 = int(input("长"))
-指令文件 = input("指令文件")
+图像文件 = input("图像文件：")
+宽 = int(input("宽："))
+长 = int(input("长："))
+指令文件 = input("指令文件：")
 
 #图片转成数据
 色彩对照表 = {
