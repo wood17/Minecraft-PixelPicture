@@ -1,9 +1,46 @@
 #本程序由wood秋木制作
-print("本程序由wood秋木制作，欢迎使用数据转指令！")
-数据 = open(input("数据文件"),"r").read()
-宽 = int(数据[0 : 3])
-长 = int(数据[3 : 6])
+from PIL import Image
+print("本程序由wood秋木制作，欢迎使用图片转指令！")
+#获取输入
+图像文件 = input("图像文件")
+宽 = int(input("宽"))
+长 = int(input("长"))
 指令文件 = input("指令文件")
+
+#图片转成数据
+色彩对照表 = {
+"aaa":1,
+"aab":2,
+"aba":3,
+"abb":4,
+"baa":5,
+"bab":6,
+"bba":7,
+"bbb":8
+}
+def 处理色值(色值):
+	处理后色值 =  "a"
+	if(色值 >= 128):
+	    处理后色值 = "b"
+	return 处理后色值
+数据 = ""
+图像 = Image.open(图像文件)
+图像 = 图像.resize((长,宽), Image.Resampling.LANCZOS)
+图像 = 图像.convert(mode="RGB")
+图像像素 = 图像.load()
+#图像.save("0.png")
+for y in range(图像.size[1]):
+    for x in range(图像.size[0]):
+        像素色 = 图像像素[x,y]
+        像素色R = 处理色值(像素色[0])
+        像素色G = 处理色值(像素色[1])
+        像素色B = 处理色值(像素色[2])
+        del 像素色
+        像素色 = 色彩对照表[像素色R+像素色G+像素色B]
+        数据 = 数据+str(像素色)
+        
+        
+#数据转成指令
 颜色方块 = {
 "1":"concrete 15",
 "2":"concrete 11",
@@ -16,11 +53,11 @@ print("本程序由wood秋木制作，欢迎使用数据转指令！")
 }
 指令前缀 = ""
 最终指令 = ""
-i = 6
+i = 0
 宽i = 0
 
 
-if(宽 * 长 != len(数据) - 6):
+if(宽 * 长 != len(数据)):
     print("您输入的数据存在问题")
     exit()
 
